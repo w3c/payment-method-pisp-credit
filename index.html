@@ -9,6 +9,7 @@
     class='remove'></script>
     <script class='remove'>
       var respecConfig = {
+          github:    "https://github.com/w3c/payment-method-pisp-credit/",
           shortName:  "payment-method-pisp-credit",
           edDraftURI:   "https://w3c.github.io/payment-method-pisp-credit/",
           specStatus: "ED",
@@ -24,40 +25,7 @@
           wgURI:        "https://www.w3.org/Payments/WG/",
           wgPublicList: "public-payments-wg",
           wgPatentURI:  "https://www.w3.org/2004/01/pp-impl/83744/status",
-          issueBase:    "https://github.com/w3c/payment-method-pisp-credit/issues",
-          localBiblio:  {
-              "PAYMENTREQUESTAPI": {
-                  title:    "Payment Request API"
-              ,   href:     "paymentrequest.html"
-              ,   authors:  [
-                      "Adrian Bateman"
-                  ,   "Zach Koch"
-                  ,   "Roy McElmurry"
-                  ,   "Marcos Caceres"
-                  ]
-              ,   status:   "WD"
-              },
-              "METHODIDENTIFIERS": {
-                  title:    "Payment Method Identifiers"
-              ,   href:     "method-identifiers.html"
-              ,   authors:  [
-                      "Adrian Bateman"
-                  ,   "Zach Koch"
-                  ,   "Roy McElmurry"
-                  ,   "Marcos Caceres"
-                  ]
-              ,   status:   "WD"
-              },
-              "WEBIDL": {
-                  title:    "WebIDL Level 1"
-              ,   href:     "https://www.w3.org/TR/WebIDL-1/ "
-              ,   authors:  [
-                      "Cameron McCormack"
-                  ,   "Boris Zbarsky"
-                  ]
-              ,   status:   "CR"
-              }
-          }
+          issueBase:    "https://github.com/w3c/payment-method-pisp-credit/issues"
       };
     </script>
     <style>
@@ -74,7 +42,7 @@
       <p>
         This specification is a Payment Method specification for use by Payment
         Initiation Service Providers (PISPs) with PaymentRequest API
-        [[PAYMENTREQUESTAPI]]. PISPs are defined as part of the European
+        [[payment-request]]. PISPs are defined as part of the European
         Payment Service Directive 2 (PSD2). With this payment method, merchants
         can more easily accept credit transfers in conjunction with PISPs.
       </p>
@@ -92,7 +60,7 @@
       </h2>
       <p>
         This specification is a Payment Method Specification used by the
-        PaymentRequest API [[!PAYMENTREQUESTAPI]] to support payment by credit
+        PaymentRequest API [[!payment-request]] to support payment by credit
         transfer.
       </p>
     </section>
@@ -108,8 +76,8 @@
           Payment Request API
         </dt>
         <dd>
-          The term <dfn>PaymentRequest constructor</dfn> is defined by the
-          PaymentRequest API specification [[!PAYMENTREQUESTAPI]].
+          The term <dfn>PaymentRequest constructor</dfn> is defined
+	  defined in Payment Request API [[payment-request]].
         </dd>
         <dt>
           Payment Method Identifiers
@@ -117,13 +85,7 @@
         <dd>
           The term <dfn data-lt="payment method identifiers">payment method
           identifier</dfn> is defined by the Payment Method Identifier
-          specification [[!METHODIDENTIFIERS]].
-        </dd>
-        <dt>
-          Web IDL
-        </dt>
-        <dd>
-          The IDL in this specification is defined by Web IDL [[!WEBIDL]].
+          specification [[!payment-method-id]].
         </dd>
       </dl>
     </section>
@@ -140,40 +102,39 @@
         PISP Credit Transfers
       </h2>
       <section id="method-id-payer">
-        <h3>
+        <h2>
           Payment Method Identifier
-        </h3>
+        </h2>
         <p>
           The <a>payment method identifier</a> string for the PISP Credit
           payment method is <dfn data-dfn-type="dfn" id=
           "dfn-pisp-credit"><code>pisp-credit</code></dfn>.
         </p>
       </section>
-      <section data-dfn-for="PISPCreditRequest" data-link-for=
-      "PISPCreditRequest">
-        <h3>
+      <section data-dfn-for="PISPCreditRequest" data-link-for="PISPCreditRequest">
+        <h2>
           Data for the PaymentRequest constructor
-        </h3>
+        </h2>
         <p>
           This section describes payment method specific data that is supplied
           as part of the <code>data</code> argument to the PaymentRequest
           constructor.
         </p>
         <section>
-          <h3>
-            <dfn>CreditTransferRequest</dfn> dictionary
-          </h3>
+          <h2>
+            <dfn>PISPCreditRequest</dfn> dictionary
+          </h2>
           <pre class="idl">
-          dictionary CreditTransferRequest {
+          dictionary PISPCreditRequest {
              sequence&lt;DOMString&gt; supportedNetworks;
           };
-        </pre>
+          </pre>
           <section>
             <h2>
               <dfn>supportedNetworks</dfn> member
             </h2>
             <p>
-              The supportedNetworks field contains a sequence of identifiers
+              This member contains a sequence of identifiers
               for credit transfer networks that the merchant accepts. This
               field is optional. If a value is not provided then the merchant
               accepts credit transfers from any credit transfer network.
@@ -184,19 +145,18 @@
           </section>
         </section>
       </section>
-      <section data-dfn-for="PISPCreditResponse" data-link-for=
-      "PISPCreditResponse">
-        <h3>
+      <section data-dfn-for="PISPCreditResponse" data-link-for="PISPCreditResponse">
+        <h2>
           Payment Method Response
-        </h3>
+        </h2>
         <p>
           This section describes the response from the PaymentRequest API when
           a user accepts payment with the PISP Credit payment method.
         </p>
         <section>
-          <h3>
+          <h2>
             <dfn>PISPCreditResponse</dfn> dictionary
-          </h3>
+          </h2>
           <p>
             The PISPCreditResponse message means that a message has been
             submitted to the Payee's Bank, not that funds transfer has
@@ -204,7 +164,7 @@
             that the payment has cleared.
           </p>
           <pre class="idl"> 
-          dictionary CreditTransferResponse {
+          dictionary PISPCreditResponse {
           required      DOMString payerAccountNumber;
           required      DOMString selectedNetwork;
           };
@@ -223,7 +183,7 @@
             </h2>
             <p>
               The network that will be used by the originator for the credit
-              transfer
+              transfer.
             </p>
           </section>
         </section>
