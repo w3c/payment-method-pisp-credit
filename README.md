@@ -1,5 +1,4 @@
 
 # Specification 'pisp-credit'
 
-This is the repository for pisp-credit. You're welcome to contribute! Let's make the Web rock our socks
-off!
+<p>The <a href="https://w3c.github.io/payment-method-pisp-credit/">PISP Credit Payment Method</a> specification.</p>

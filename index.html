@@ -1,37 +1,240 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
   <head>
-    <meta charset="utf-8">
-    <title>Spec proposal</title>
-    <script src="https://www.w3.org/Tools/respec/respec-w3c-common" class="remove"></script>
+    <title>
+      PISP Credit Payment
+    </title>
+    <meta charset='utf-8'>
+    <script src='https://www.w3.org/Tools/respec/respec-w3c-common' async
+    class='remove'></script>
     <script class='remove'>
-      // See https://github.com/w3c/respec/wiki/ for how to configure ReSpec
       var respecConfig = {
-        specStatus: "CG-DRAFT",
-        shortName: "pisp-credit",
-        editors: [{
-          name: "null"
-        }]
+          shortName:  "payment-method-pisp-credit",
+          edDraftURI:   "https://w3c.github.io/payment-method-pisp-credit/",
+          specStatus: "ED",
+          editors: [
+                {   name:       "Cyril Vignet",
+                    company:    "BPCE" }
+          ],
+          useExperimentalStyles: true,
+          license:      "w3c-software-doc",
+          //previousMaturity: "FPWD",
+          //previousPublishDate:  "1977-03-15",
+          wg:           "Web Payments Working Group",
+          wgURI:        "https://www.w3.org/Payments/WG/",
+          wgPublicList: "public-payments-wg",
+          wgPatentURI:  "https://www.w3.org/2004/01/pp-impl/83744/status",
+          issueBase:    "https://github.com/w3c/payment-method-pisp-credit/issues",
+          localBiblio:  {
+              "PAYMENTREQUESTAPI": {
+                  title:    "Payment Request API"
+              ,   href:     "paymentrequest.html"
+              ,   authors:  [
+                      "Adrian Bateman"
+                  ,   "Zach Koch"
+                  ,   "Roy McElmurry"
+                  ,   "Marcos Caceres"
+                  ]
+              ,   status:   "WD"
+              },
+              "METHODIDENTIFIERS": {
+                  title:    "Payment Method Identifiers"
+              ,   href:     "method-identifiers.html"
+              ,   authors:  [
+                      "Adrian Bateman"
+                  ,   "Zach Koch"
+                  ,   "Roy McElmurry"
+                  ,   "Marcos Caceres"
+                  ]
+              ,   status:   "WD"
+              },
+              "WEBIDL": {
+                  title:    "WebIDL Level 1"
+              ,   href:     "https://www.w3.org/TR/WebIDL-1/ "
+              ,   authors:  [
+                      "Cameron McCormack"
+                  ,   "Boris Zbarsky"
+                  ]
+              ,   status:   "CR"
+              }
+          }
       };
     </script>
+    <style>
+    dt { margin-top: 0.75em; }
+    table { margin-top: 0.75em; border-collapse:collapse; border-style:hidden hidden none hidden }
+    table thead { border-bottom:solid }
+    table tbody th:first-child { border-left:solid }
+    table td, table th { border-left:solid; border-right:solid; border-bottom:solid thin; vertical-align:top; padding:0.2em }
+    li { margin-top: 0.5em; margin-bottom: 0.5em;}
+    </style>
   </head>
   <body>
-    <section id="abstract">
+    <section id='abstract'>
       <p>
-        This specification does neat stuff.
+        This specification is a Payment Method specification for use by
+	Payment Initiation Service Providers (PISPs) with
+	PaymentRequest API [[PAYMENTREQUESTAPI]]. PISPs are defined
+	as part of the European Payment Service Directive 2 (PSD2).
+        With this payment method, merchants can more easily accept
+	credit transfers in conjunction with PISPs.
       </p>
     </section>
-    <section id="sotd">
+    <section id='sotd'>
       <p>
-        This is an unofficial proposal.
+        The working group maintains <a href=
+        "https://github.com/w3c/payment-method-pisp-credit/issues">
+        a list of all bug reports that the group has not yet addressed</a>.
       </p>
+    </section>
+    <section class='informative'>
+      <h2>
+        Introduction
+      </h2>
+      <p>
+        This specification is a Payment Method Specification used by the
+        PaymentRequest API [[!PAYMENTREQUESTAPI]] to support payment by credit
+        transfer.
+      </p>
+    </section>
+    <section id="dependencies">
+      <h2>
+        Dependencies
+      </h2>
+      <p>
+        This specification relies on several other underlying specifications.
+      </p>
+      <dl>
+        <dt>
+          Payment Request API
+        </dt>
+        <dd>
+          The term <dfn>PaymentRequest constructor</dfn> is defined by the
+          PaymentRequest API specification [[!PAYMENTREQUESTAPI]].
+        </dd>
+        <dt>
+          Payment Method Identifiers
+        </dt>
+        <dd>
+          The term <dfn data-lt="payment method identifiers">payment method
+          identifier</dfn> is defined by the Payment Method Identifier
+          specification [[!METHODIDENTIFIERS]].
+        </dd>
+        <dt>
+          Web IDL
+        </dt>
+        <dd>
+          The IDL in this specification is defined by Web IDL [[!WEBIDL]].
+        </dd>
+      </dl>
+    </section>
+    <section id="examples">
+      <h2>
+        Examples
+      </h2>
+      <p>@@Update me@@</p>
     </section>
 
-    <section id="introduction">
-      <h2>Introduction</h2>
+    <section id="payer-initiated">
+      <h2>
+        PISP Credit Transfers
+      </h2>
+
+    <section id="method-id-payer">
+      <h3>
+        Payment Method Identifier
+      </h3>
       <p>
-        See <a href="https://github.com/w3c/respec/wiki/User's-Guide">ReSpec's user guide</a>
-        for how toget started!
+        The <a>payment method identifier</a> string for the PISP Credit payment method is <dfn data-dfn-type="dfn" id="dfn-pisp-credit"><code>pisp-credit</code></dfn>.</p>
+    </section>
+    <section data-dfn-for="PISPCreditRequest" data-link-for="PISPCreditRequest">
+      <h3>
+        Data for the PaymentRequest constructor
+      </h3>
+      <p>
+        This section describes payment method specific data that is supplied as
+        part of the <code>data</code> argument to the PaymentRequest
+        constructor.
+      </p>
+      <section>
+        <h3>
+          <dfn>CreditTransferRequest</dfn> dictionary
+        </h3>
+        <pre class="idl">
+          dictionary CreditTransferRequest {
+             sequence&lt;DOMString&gt; supportedNetworks;
+          };
+        </pre>
+        <dl>
+          <dt>
+            <dfn>supportedNetworks</dfn> member
+          </dt>
+          <dd>
+            The supportedNetworks field contains a sequence of identifiers for
+            credit transfer networks that the merchant accepts. This field is
+            optional. If a value is not provided then the merchant accepts
+            credit transfers from any credit transfer network. <span class=
+            "note">Note: The Web Payments Working Group is still discussing
+            whether and how to maintain a database of supported network
+            identifiers.</span>
+          </dd>
+        </dl>
+      </section>
+    </section>
+    <section data-dfn-for="PISPCreditResponse" data-link-for="PISPCreditResponse">
+      <h3>
+        Payment Method Response
+      </h3>
+      <p>
+        This section describes the response from the PaymentRequest API when a
+        user accepts payment with the PISP Credit payment method.
+      </p>
+      <section>
+        <h3>
+          <dfn>PISPCreditResponse</dfn> dictionary
+        </h3>
+        <p>
+          The PISPCreditResponse message means that a message has been
+          submitted to the Payee's Bank, not that funds transfer has occurred.
+          The merchant should wait for notification from its Bank that the
+          payment has cleared.
+        </p>
+        <pre class="idl"> 
+          dictionary CreditTransferResponse {
+          required      DOMString payerAccountNumber;
+          required      DOMString selectedNetwork;
+          };
+        </pre>
+        <dl>
+          <dt>
+            <dfn>payerAccountNumber</dfn> member
+          </dt>
+          <dd>
+            @@Define me@@
+          </dd>
+          <dt>
+            <dfn>selectedNetwork</dfn> member
+          </dt>
+          <dd>
+            The network that will be used by the originator for the credit transfer
+          </dd>
+        </dl>
+      </section>
+    </section>
+    </section>
+
+    <section id="flow">
+      <h2>
+        Appendix: Flow Diagrams
+      </h2>
+      <p>@@Update me@@
+    </section>
+    <section id="acks">
+      <h2>
+        Acknowledgments
+      </h2>
+      <p>
+        Kris Ketels (SWIFT), Vincent Kuntz (SWIFT), Matt Saxon (Worldpay)
       </p>
     </section>
   </body>
