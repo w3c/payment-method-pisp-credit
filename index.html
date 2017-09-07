@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>
       PISP Credit Payment
@@ -72,19 +72,18 @@
   <body>
     <section id='abstract'>
       <p>
-        This specification is a Payment Method specification for use by
-	Payment Initiation Service Providers (PISPs) with
-	PaymentRequest API [[PAYMENTREQUESTAPI]]. PISPs are defined
-	as part of the European Payment Service Directive 2 (PSD2).
-        With this payment method, merchants can more easily accept
-	credit transfers in conjunction with PISPs.
+        This specification is a Payment Method specification for use by Payment
+        Initiation Service Providers (PISPs) with PaymentRequest API
+        [[PAYMENTREQUESTAPI]]. PISPs are defined as part of the European
+        Payment Service Directive 2 (PSD2). With this payment method, merchants
+        can more easily accept credit transfers in conjunction with PISPs.
       </p>
     </section>
     <section id='sotd'>
       <p>
         The working group maintains <a href=
-        "https://github.com/w3c/payment-method-pisp-credit/issues">
-        a list of all bug reports that the group has not yet addressed</a>.
+        "https://github.com/w3c/payment-method-pisp-credit/issues">a list of
+        all bug reports that the group has not yet addressed</a>.
       </p>
     </section>
     <section class='informative'>
@@ -132,102 +131,111 @@
       <h2>
         Examples
       </h2>
-      <p>@@Update me@@</p>
+      <p>
+        @@Update me@@
+      </p>
     </section>
-
     <section id="payer-initiated">
       <h2>
         PISP Credit Transfers
       </h2>
-
-    <section id="method-id-payer">
-      <h3>
-        Payment Method Identifier
-      </h3>
-      <p>
-        The <a>payment method identifier</a> string for the PISP Credit payment method is <dfn data-dfn-type="dfn" id="dfn-pisp-credit"><code>pisp-credit</code></dfn>.</p>
-    </section>
-    <section data-dfn-for="PISPCreditRequest" data-link-for="PISPCreditRequest">
-      <h3>
-        Data for the PaymentRequest constructor
-      </h3>
-      <p>
-        This section describes payment method specific data that is supplied as
-        part of the <code>data</code> argument to the PaymentRequest
-        constructor.
-      </p>
-      <section>
+      <section id="method-id-payer">
         <h3>
-          <dfn>CreditTransferRequest</dfn> dictionary
+          Payment Method Identifier
         </h3>
-        <pre class="idl">
+        <p>
+          The <a>payment method identifier</a> string for the PISP Credit
+          payment method is <dfn data-dfn-type="dfn" id=
+          "dfn-pisp-credit"><code>pisp-credit</code></dfn>.
+        </p>
+      </section>
+      <section data-dfn-for="PISPCreditRequest" data-link-for=
+      "PISPCreditRequest">
+        <h3>
+          Data for the PaymentRequest constructor
+        </h3>
+        <p>
+          This section describes payment method specific data that is supplied
+          as part of the <code>data</code> argument to the PaymentRequest
+          constructor.
+        </p>
+        <section>
+          <h3>
+            <dfn>CreditTransferRequest</dfn> dictionary
+          </h3>
+          <pre class="idl">
           dictionary CreditTransferRequest {
              sequence&lt;DOMString&gt; supportedNetworks;
           };
         </pre>
-        <dl>
-          <dt>
-            <dfn>supportedNetworks</dfn> member
-          </dt>
-          <dd>
-            The supportedNetworks field contains a sequence of identifiers for
-            credit transfer networks that the merchant accepts. This field is
-            optional. If a value is not provided then the merchant accepts
-            credit transfers from any credit transfer network. <span class=
-            "note">Note: The Web Payments Working Group is still discussing
-            whether and how to maintain a database of supported network
-            identifiers.</span>
-          </dd>
-        </dl>
+          <section>
+            <h2>
+              <dfn>supportedNetworks</dfn> member
+            </h2>
+            <p>
+              The supportedNetworks field contains a sequence of identifiers
+              for credit transfer networks that the merchant accepts. This
+              field is optional. If a value is not provided then the merchant
+              accepts credit transfers from any credit transfer network.
+              <span class="note">Note: The Web Payments Working Group is still
+              discussing whether and how to maintain a database of supported
+              network identifiers.</span>
+            </p>
+          </section>
+        </section>
       </section>
-    </section>
-    <section data-dfn-for="PISPCreditResponse" data-link-for="PISPCreditResponse">
-      <h3>
-        Payment Method Response
-      </h3>
-      <p>
-        This section describes the response from the PaymentRequest API when a
-        user accepts payment with the PISP Credit payment method.
-      </p>
-      <section>
+      <section data-dfn-for="PISPCreditResponse" data-link-for=
+      "PISPCreditResponse">
         <h3>
-          <dfn>PISPCreditResponse</dfn> dictionary
+          Payment Method Response
         </h3>
         <p>
-          The PISPCreditResponse message means that a message has been
-          submitted to the Payee's Bank, not that funds transfer has occurred.
-          The merchant should wait for notification from its Bank that the
-          payment has cleared.
+          This section describes the response from the PaymentRequest API when
+          a user accepts payment with the PISP Credit payment method.
         </p>
-        <pre class="idl"> 
+        <section>
+          <h3>
+            <dfn>PISPCreditResponse</dfn> dictionary
+          </h3>
+          <p>
+            The PISPCreditResponse message means that a message has been
+            submitted to the Payee's Bank, not that funds transfer has
+            occurred. The merchant should wait for notification from its Bank
+            that the payment has cleared.
+          </p>
+          <pre class="idl"> 
           dictionary CreditTransferResponse {
           required      DOMString payerAccountNumber;
           required      DOMString selectedNetwork;
           };
         </pre>
-        <dl>
-          <dt>
-            <dfn>payerAccountNumber</dfn> member
-          </dt>
-          <dd>
-            @@Define me@@
-          </dd>
-          <dt>
-            <dfn>selectedNetwork</dfn> member
-          </dt>
-          <dd>
-            The network that will be used by the originator for the credit transfer
-          </dd>
-        </dl>
+          <section>
+            <h2>
+              <dfn>payerAccountNumber</dfn> member
+            </h2>
+            <p>
+              @@Define me@@
+            </p>
+          </section>
+          <section>
+            <h2>
+              <dfn>selectedNetwork</dfn> member
+            </h2>
+            <p>
+              The network that will be used by the originator for the credit
+              transfer
+            </p>
+          </section>
+        </section>
       </section>
     </section>
-    </section>
-
     <section id="flow">
       <h2>
         Appendix: Flow Diagrams
       </h2>
-      <p>@@Update me@@
+      <p>
+        @@Update me@@
+      </p>
     </section>
     <section id="acks">
       <h2>
