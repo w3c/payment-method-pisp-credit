@@ -44,7 +44,16 @@
         Initiation Service Providers (PISPs) with PaymentRequest API
         [[payment-request]]. PISPs are defined as part of the European Payment
         Service Directive 2 (PSD2). With this payment method, merchants can
-        more easily accept credit transfers in conjunction with PISPs.
+        more easily accept credit transfers in conjunction with PISPs. The PISP
+        are regulated and could be automatically authenticated by the Payer's bank. 
+        Thus, the link between PISP and payer'sd bank is secure. Furthermore, 
+        PISP have contractual relationships with merchant. Thus, the issue of 
+        tamperisation the merchant IBAN (payee IBAN) no longer exists. 
+        On the other hand, we do not add a new issue with the IBAN of the payer,
+        because this IBAN is by the PISP as a routing code. The real credit transfer 
+         will be procesed only after an authentication  of the payer. (by the way, the 
+        PDS2 considers that the IBAN of the payer is not a sensitive data).
+     
       </p>
     </section>
     <section id='sotd'>
