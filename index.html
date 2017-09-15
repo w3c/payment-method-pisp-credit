@@ -155,8 +155,7 @@
           </section>
         </section>
       </section>
-      <section data-dfn-for="PISPCreditResponse" data-link-for=
-      "PISPCreditResponse">
+      <section data-dfn-for="PISPCreditResponse" data-link-for="PISPCreditResponse">
         <h2>
           Payment Method Response
         </h2>
@@ -164,30 +163,32 @@
           This section describes the response from the PaymentRequest API when
           a user accepts payment with the PISP Credit payment method.
         </p>
-        <section>
-          <h2>
-            <dfn>PISPCreditResponse</dfn> dictionary
-          </h2>
           <p>
             The PISPCreditResponse message means that a message has been
             submitted to the Payee's Bank, not that funds transfer has
             occurred. The merchant should wait for notification from its Bank
             that the payment has cleared.
           </p>
+        <section>
+          <h2>
+            <dfn>PISPCreditResponse</dfn> dictionary
+          </h2>
           <pre class="idl"> 
-          dictionary PISPCreditResponse {
-          required      DOMString payerBank;
-          optional      DOMString payerAccountNumber;
-          optional      DOMString selectedNetwork;
-          };
-        </pre>
+            dictionary PISPCreditResponse {
+            required      DOMString payerBank;
+            required      DOMString payerAccountNumber;
+            required      DOMString selectedNetwork;
+	    };
+          </pre>
           <section>
-           <h2>
+            <h2>
               <dfn>payerBank</dfn> member
             </h2>
             <p>
               @@Define me@@
             </p>
+	  </section>
+	  <section>
             <h2>
               <dfn>payerAccountNumber</dfn> member
             </h2>
@@ -210,17 +211,13 @@
     <section id="flow">
       <h2>
         Appendix: Flow Diagrams
-        <div>
+      </h2>
+      <p>
           <a href=
              "http://www.plantuml.com/plantuml/proxy?fmt=svg&amp;src=https://raw.githubusercontent.com/w3c/payment-method-pisp-credit/gh-pages/sct012.pml">
             <img alt="Push credit transfer flow, SEPA example" width="100%" src=
 		 "http://www.plantuml.com/plantuml/proxy?fmt=svg&amp;src=https://raw.githubusercontent.com/w3c/payment-method-pisp-credit/gh-pages/sct012.pml"/></a>
-	</div>
-        
-      </h2>
-      <p>
-        @@Update me@@
-      </p>
+</p>
     </section>
     <section id="acks">
       <h2>
