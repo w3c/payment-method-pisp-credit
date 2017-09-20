@@ -46,8 +46,8 @@
         Service Directive 2 (PSD2). With this payment method, merchants can
         more easily accept credit transfers in conjunction with PISPs. The PISP
         are regulated and could be automatically authenticated by the Payer's bank. 
-        Thus, the link between PISP and payer'sd bank is secure. Furthermore, 
-        PISP have contractual relationships with merchant. Thus, the issue of 
+        Thus, the link between PISP and payer's bank is secure. 
+	Furthermore, PISP have contractual relationships with merchant. Thus, the issue of 
         tamperisation the merchant IBAN (payee IBAN) no longer exists. 
         On the other hand, we do not add a new issue with the IBAN of the payer,
         because this IBAN is by the PISP as a routing code. The real credit transfer 
@@ -147,8 +147,10 @@
               This member contains a sequence of identifiers for credit
               transfer networks that the merchant accepts. This field is
               optional. If a value is not provided then the merchant accepts
-              credit transfers from any credit transfer network. <span class=
-              "note">Note: The Web Payments Working Group is still discussing
+              credit transfers from any credit transfer network or the PISP 
+	      will manage to find the right network depending of the Bank 
+              of the payer. <span class= "note">Note: The Web Payments 
+	      Working Group is still discussing
               whether and how to maintain a database of supported network
               identifiers.</span>
             </p>
