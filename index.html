@@ -178,8 +178,8 @@
           <pre class="idl"> 
             dictionary PISPCreditResponse {
             required      DOMString payerBank;
-            required      DOMString payerAccountNumber;
-            required      DOMString selectedNetwork;
+            DOMString payerAccountNumber;
+            DOMString selectedNetwork;
 	    };
           </pre>
           <section>
@@ -187,7 +187,19 @@
               <dfn>payerBank</dfn> member
             </h2>
             <p>
-              @@Define me@@
+              "payerBank" is a code that will enable the PISP to identify the URL of the DSP2-API
+	       of the bank of the Payer. This could be either :
+		    - the BIC (Bank identifier code) as defiend by the ISO 9362 standard
+		    - the fifteen (15) first caracters of the International bank account number
+		    as defined in the ISO 13616 standard
+		    - any country based bank code
+		    - the URL of the API of the Bank
+		Despite of this multiple choice, and as this proposal is based on the European DSP2,
+		the first fifteen caraters of the IBAN (International bank account number) is the best choice :
+		   - the payer know his IBAN
+		    - the payer is not supposed to know the BIC of his bank (european regulation)
+		    - the "old" bank code used before IBAN are often country based and not userfriendly
+		    - the payer is not supposed to know the URL of the API	        
             </p>
 	  </section>
 	  <section>
