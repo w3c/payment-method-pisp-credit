@@ -207,7 +207,10 @@
               <dfn>payerAccountNumber</dfn> member
             </h2>
             <p>
-              @@Define me@@
+              Some API of payerBank need to provide the full account number of the client. In a 
+	      European perspective, the IBAN should be used for this field. The IBAN of the payer
+	      is not considered as a sensible data in the DSP2 (even if somme country based central bank
+	      disagree).
             </p>
           </section>
           <section>
@@ -216,7 +219,9 @@
             </h2>
             <p>
               The network that will be used by the originator for the credit
-              transfer.
+              transfer. if this field is not provided, the PISP should maintain
+	      a database of which network to use depending of the country of the
+	      payer bank. For exemple, SEPA will be used for euro countries.
             </p>
           </section>
         </section>
