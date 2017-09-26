@@ -44,16 +44,7 @@
         Initiation Service Providers (PISPs) with PaymentRequest API
         [[payment-request]]. PISPs are defined as part of the European Payment
         Service Directive 2 (PSD2). With this payment method, merchants can
-        more easily accept credit transfers in conjunction with PISPs. The PISP
-        are regulated and could be automatically authenticated by the Payer's bank. 
-        Thus, the link between PISP and payer's bank is secure. 
-	Furthermore, PISP have contractual relationships with merchant. Thus, the issue of 
-        tamperisation the merchant IBAN (payee IBAN) no longer exists. 
-        On the other hand, we do not add a new issue with the IBAN of the payer,
-        because this IBAN is by the PISP as a routing code. The real credit transfer 
-         will be procesed only after an authentication  of the payer. (by the way, the 
-        PDS2 considers that the IBAN of the payer is not a sensitive data).
-     
+        more easily accept credit transfers in conjunction with PISPs.
       </p>
     </section>
     <section id='sotd'>
@@ -72,13 +63,53 @@
         PaymentRequest API [[!payment-request]] to support payment by credit
         transfer.
       </p>
+      <p>
+        Payment Initiation Service Providers (PISPs) are defined as part of the
+        European Payment Service Directive 2 (PSD2). The goal of this payment
+        method is to create a simple but secure exchange of data that leverages
+        the information that is known by banks under the regulation, and the
+        strong authentication required by PSD2.
+      </p>
+      <p>
+        This payment method flow works as follows:
+      </p>
+      <ul>
+        <li>The response data from the payer's payment app includes information
+        about the payer's bank and account.
+        </li>
+        <li>The merchant's PISP receives this information, either directly or
+        via the merchant.
+        </li>
+        <li>The PISP communicates the payment request to the payer's bank,
+        which authenticates the user to confirm the payment.
+        </li>
+        <li>The credit transfer is initiated only after authentication.
+        </li>
+      </ul>
+      <p>
+        This payment method offers several benefits:
+      </p>
+      <ul>
+        <li>Merchants do not release sensitive bank account information,
+        reducing the risk of phishing attacks.
+        </li>
+        <li>The payment method has "pull" characteristics.
+        </li>
+        <li>The link betewen the PISP and the payer's bank is secure (under
+        PSD2) and the payer's bank can authenticate the PISP.
+        </li>
+        <li>Under PSD2, the payer's IBAN is not considered sensitive data; here
+        it used for routing. The actual credit transfer does not occur until
+        after the payer's bank has authenticated the payer.
+        </li>
+      </ul>
     </section>
     <section id="dependencies">
       <h2>
         Dependencies
       </h2>
       <p>
-        This specification relies on several other underlying specifications.
+        This specification relies on several underlying specifications.
       </p>
       <dl>
         <dt>
@@ -96,27 +127,39 @@
           identifier</dfn> is defined by the Payment Method Identifier
           specification [[!payment-method-id]].
         </dd>
+        <dt>
+          ISO 9362:2014
+        </dt>
+        <dd>
+          The term <dfn data-lt="bic">BIC</dfn> (bank identifier code) is
+          defined in <a href="https://www.iso.org/standard/60390.html">ISO
+          9362:2014</a>.
+        </dd>
+        <dt>
+          ISO 13616-1:2007
+        </dt>
+        <dd>
+          The term <dfn data-lt="IBAN">IBAN</dfn> (international bank account
+          number) is defined in <a href=
+          "https://www.iso.org/standard/41031.html">ISO 13616-1:2007</a>.
+        </dd>
       </dl>
     </section>
     <section id="examples">
       <h2>
         Examples
       </h2>
-      <p>
-        <section>
-	<h3>SEPA</h3>
-	<pre class='example' title="PISP who manage Europe and Great Britain"/>
-	    const PISPcreditTransfer = {
-supportedNetworks: ["SEPA", "BACS"],
-}
-		
-		<pre class='example' title="Response with a french account implicitely using SEPA"/>
-	    const PISPcreditResponse = {
-            payerBank: ["FR761751590000"],
-}
- 	 </pre>
+      <section>
+        <h3>
+          SEPA
+        </h3>
+        <pre class='example' title="PISP who manage Europe and Great Britain">
+        </pre>const PISPcreditTransfer = { supportedNetworks: ["SEPA", "BACS"],
+        }
+        <pre class='example' title=
+        "Response with a french account implicitely using SEPA"></pre>const
+        PISPcreditResponse = { payerBank: ["FR761751590000"], }
       </section>
-      </p>
     </section>
     <section id="payer-initiated">
       <h2>
@@ -159,17 +202,17 @@ supportedNetworks: ["SEPA", "BACS"],
               This member contains a sequence of identifiers for credit
               transfer networks that the merchant accepts. This field is
               optional. If a value is not provided then the merchant accepts
-              credit transfers from any credit transfer network or the PISP 
-	      will manage to find the right network depending of the Bank 
-              of the payer. <span class= "note">Note: The Web Payments 
-	      Working Group is still discussing
-              whether and how to maintain a database of supported network
-              identifiers.</span>
+              credit transfers from any credit transfer network or the PISP
+              will manage to find the right network depending on the payer's
+              bank. <span class="note">Note: The Web Payments Working Group is
+              still discussing whether and how to maintain a database of
+              supported network identifiers.</span>
             </p>
           </section>
         </section>
       </section>
-      <section data-dfn-for="PISPCreditResponse" data-link-for="PISPCreditResponse">
+      <section data-dfn-for="PISPCreditResponse" data-link-for=
+      "PISPCreditResponse">
         <h2>
           Payment Method Response
         </h2>
@@ -177,12 +220,12 @@ supportedNetworks: ["SEPA", "BACS"],
           This section describes the response from the PaymentRequest API when
           a user accepts payment with the PISP Credit payment method.
         </p>
-          <p>
-            The PISPCreditResponse message means that a message has been
-            submitted to the Payee's Bank, not that funds transfer has
-            occurred. The merchant should wait for notification from its Bank
-            that the payment has cleared.
-          </p>
+        <p>
+          The PISPCreditResponse message means that a message has been
+          submitted to the Payee's Bank, not that funds transfer has occurred.
+          The merchant should wait for notification from its Bank that the
+          payment has cleared.
+        </p>
         <section>
           <h2>
             <dfn>PISPCreditResponse</dfn> dictionary
@@ -192,37 +235,36 @@ supportedNetworks: ["SEPA", "BACS"],
             required      DOMString payerBank;
             DOMString payerAccountNumber;
             DOMString selectedNetwork;
-	    };
+            };
           </pre>
           <section>
             <h2>
               <dfn>payerBank</dfn> member
             </h2>
             <p>
-              "payerBank" is a code that will enable the PISP to identify the URL of the DSP2-API
-	       of the bank of the Payer. This could be either :
-		    - the BIC (Bank identifier code) as defiend by the ISO 9362 standard
-		    - the fifteen (15) first caracters of the International bank account number
-		    as defined in the ISO 13616 standard
-		    - any country based bank code
-		    - the URL of the API of the Bank
-		Despite of this multiple choice, and as this proposal is based on the European DSP2,
-		the first fifteen caraters of the IBAN (International bank account number) is the best choice :
-		   - the payer know his IBAN
-		    - the payer is not supposed to know the BIC of his bank (european regulation)
-		    - the "old" bank code used before IBAN are often country based and not userfriendly
-		    - the payer is not supposed to know the URL of the API	        
+              This member is a code that enables the PISP to identify the
+              (PSD2) API of the payer's bank. This member may take several
+              values:
             </p>
-	  </section>
-	  <section>
+            <ul>
+              <li>the first fifteen (15) characters of the <a>IBAN</a> of the
+              payer's bank account. This value is preferred because it is
+              standardized and is more likely known to the payer (whereas the
+              other values generally should not be available to the payer).
+              </li>
+              <li>the <a>BIC</a> of the payer's bank.
+              </li>
+              <li>a URL designating a PSD2-compliant API for PISPs providing
+              access to the payer's bank account.
+              </li>
+            </ul>
+          </section>
+          <section>
             <h2>
               <dfn>payerAccountNumber</dfn> member
             </h2>
             <p>
-              Some API of payerBank need to provide the full account number of the client. In a 
-	      European perspective, the IBAN should be used for this field. The IBAN of the payer
-	      is not considered as a sensible data in the DSP2 (even if somme country based central bank
-	      disagree).
+              This member identifies the the payer's <a>IBAN</a>.
             </p>
           </section>
           <section>
@@ -230,10 +272,10 @@ supportedNetworks: ["SEPA", "BACS"],
               <dfn>selectedNetwork</dfn> member
             </h2>
             <p>
-              The network that will be used by the originator for the credit
-              transfer. if this field is not provided, the PISP should maintain
-	      a database of which network to use depending of the country of the
-	      payer bank. For exemple, SEPA will be used for euro countries.
+              This member identifies the network to be used by the originator
+              for the credit transfer. If not provided, the PISP may use a
+              credit transfer network corresponding to the country of the
+              payer's bank (e.g., SEPA will be used for Euros).
             </p>
           </section>
         </section>
@@ -244,11 +286,11 @@ supportedNetworks: ["SEPA", "BACS"],
         Appendix: Flow Diagrams
       </h2>
       <p>
-          <a href=
-             "http://www.plantuml.com/plantuml/proxy?fmt=svg&amp;src=https://raw.githubusercontent.com/w3c/payment-method-pisp-credit/gh-pages/sct012.pml">
-            <img alt="Push credit transfer flow, SEPA example" width="100%" src=
-		 "http://www.plantuml.com/plantuml/proxy?fmt=svg&amp;src=https://raw.githubusercontent.com/w3c/payment-method-pisp-credit/gh-pages/sct012.pml"/></a>
-</p>
+        <a href=
+        "http://www.plantuml.com/plantuml/proxy?fmt=svg&amp;src=https://raw.githubusercontent.com/w3c/payment-method-pisp-credit/gh-pages/sct012.pml">
+        <img alt="Push credit transfer flow, SEPA example" width="100%" src=
+        "http://www.plantuml.com/plantuml/proxy?fmt=svg&amp;src=https://raw.githubusercontent.com/w3c/payment-method-pisp-credit/gh-pages/sct012.pml"></a>
+      </p>
     </section>
     <section id="acks">
       <h2>
