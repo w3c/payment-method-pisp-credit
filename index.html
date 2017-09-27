@@ -246,21 +246,13 @@
             </h2>
             <p>
               This member is a code that enables the PISP to identify the
-              (PSD2) API of the payer's bank. This member may take several
-              values:
+              (PSD2) API of the payer's bank. As the PISP-method comes from dedicated European
+		legislation, the payer's bank will be identified by the first fifteen (15) 
+		characters of the <a>IBAN</a> of the payer's bank account. Indeed, the IBAN is 
+		 genralized in the European SEPA zone and any account holder have one.
+		 Other bank identifier exists but are often not known by the account holder.
             </p>
-            <ul>
-              <li>the first fifteen (15) characters of the <a>IBAN</a> of the
-              payer's bank account. This value is preferred because it is
-              standardized and is more likely known to the payer (whereas the
-              other values generally should not be available to the payer).
-              </li>
-              <li>the <a>BIC</a> of the payer's bank.
-              </li>
-              <li>a URL designating a PSD2-compliant API for PISPs providing
-              access to the payer's bank account.
-              </li>
-            </ul>
+            
           </section>
           <section>
             <h2>
