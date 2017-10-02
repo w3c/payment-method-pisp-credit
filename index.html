@@ -246,20 +246,18 @@
             </h2>
             <p>
               This member is a code that enables the PISP to identify the
-              (PSD2) API of the payer's bank. As the PISP-method comes from dedicated European
-		legislation, the payer's bank will be identified by the first fifteen (15) 
-		characters of the <a>IBAN</a> of the payer's bank account. Indeed, the IBAN is 
-		 genralized in the European SEPA zone and any account holder have one.
-		 Other bank identifier exists but are often not known by the account holder.
+              payer's bank.
             </p>
-            
+            <div class="issue" title="How do we identify payer bank?">
+	      <p>How do we identify the payer's bank?</p>
+	    </div>
           </section>
           <section>
             <h2>
               <dfn>payerAccountNumber</dfn> member
             </h2>
             <p>
-              This member identifies the the payer's <a>IBAN</a>.
+              This member identifies the the payer's <a>IBAN</a>. Only the first 15 characters of the IBAN are required.
             </p>
           </section>
           <section>
@@ -282,9 +280,9 @@
       </h2>
       <p>
         <a href=
-        "http://www.plantuml.com/plantuml/proxy?fmt=svg&amp;src=https://raw.githubusercontent.com/w3c/payment-method-pisp-credit/gh-pages/sct012.pml">
+        "https://github.com/w3c/payment-method-pisp-credit/wiki/Flows-%22Initiation-first%22">
         <img alt="Push credit transfer flow, SEPA example" width="100%" src=
-        "http://www.plantuml.com/plantuml/proxy?fmt=svg&amp;src=https://raw.githubusercontent.com/w3c/payment-method-pisp-credit/gh-pages/sct012.pml"></a>
+        "http://www.plantuml.com/plantuml/proxy?fmt=svg&amp;src=https://raw.githubusercontent.com/w3c/payment-method-pisp-credit/gh-pages/sct013.pml"></a>
       </p>
     </section>
     <section id="acks">
