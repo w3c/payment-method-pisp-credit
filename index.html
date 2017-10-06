@@ -236,7 +236,6 @@
           <pre class="idl"> 
             dictionary PISPCreditResponse {
             required      DOMString payerBank;
-            DOMString payerAccountNumber;
             DOMString selectedNetwork;
             };
           </pre>
@@ -246,19 +245,10 @@
             </h2>
             <p>
               This member is a code that enables the PISP to identify the
-              payer's bank.
+              payer's bank. The first 15 characters of the IBAN (bank account)
+	      are required.
             </p>
-            <div class="issue" title="How do we identify payer bank?">
-	      <p>How do we identify the payer's bank?</p>
-	    </div>
-          </section>
-          <section>
-            <h2>
-              <dfn>payerAccountNumber</dfn> member
-            </h2>
-            <p>
-              This member identifies the the payer's <a>IBAN</a>. Only the first 15 characters of the IBAN are required.
-            </p>
+            
           </section>
           <section>
             <h2>
