@@ -24,7 +24,7 @@ Originator -> Beneficiary : Alice clicks "ok" to validate the shopping e-cart
 
 == PISP credit transfer intiation ==
 
-Beneficiary -[#blue]> Originator : CreditorPaymentActivationRequest
+Beneficiary -[#blue]> Originator : PaymentRequest
 
 note right Beneficiary
 this request contains multiple payment methods
@@ -37,7 +37,7 @@ end note
 
 Originator -[#black]> Originator : Alice choose PISP credit Payment
 
-Originator -[#blue]> Beneficiary : bank identifier of Alice is sent to merchant
+Originator -[#blue]> Beneficiary : PaymentResponse (bank identifier of Alice is sent to merchant)
 
 group Credit Initiation (background mode)
 Beneficiary -[#blue]-> PISP : Merchant gives Alice Bank identifier to PISP
