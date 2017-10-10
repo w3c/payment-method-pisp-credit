@@ -161,7 +161,7 @@
         </pre>
         <pre class='example' title=
         "Response with a french account explicitely using SEPA">
-          const PISPcreditResponse = { payerBank: ["FR761751590000"],  selectedNetwork: "SEPA" };
+          const PISPcreditResponse = { payerAccount: ["FR761751590000"],  selectedNetwork: "SEPA" };
         </pre>
       </section>
     </section>
@@ -236,7 +236,7 @@
           </h2>
           <pre class="idl"> 
             dictionary PISPCreditResponse {
-            required      DOMString payerBank;
+            required      DOMString payerAccount;
             DOMString selectedNetwork;
             };
           </pre>
