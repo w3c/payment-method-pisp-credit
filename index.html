@@ -134,7 +134,7 @@
           ISO 9362:2014
         </dt>
         <dd>
-          The term <dfn data-lt="bic">BIC</dfn> (bank identifier code) is
+          The term <dfn data-lt="bic">BIC</dfn> (business identifier code) is
           defined in <a href="https://www.iso.org/standard/60390.html">ISO
           9362:2014</a>.
         </dd>
@@ -158,10 +158,11 @@
         </h3>
         <pre class='example' title="PISP who manage Europe and Great Britain">
           const PISPcreditTransfer = { supportedNetworks: ["SEPA", "BACS"] };
-	</pre>
-        <pre class='example' title="Response with a french account explicitely using SEPA">
-	  const PISPcreditResponse = { payerBank: ["FR761751590000"],  selectedNetwork: "SEPA" };
-	</pre>
+        </pre>
+        <pre class='example' title=
+        "Response with a french account explicitely using SEPA">
+          const PISPcreditResponse = { payerBank: ["FR761751590000"],  selectedNetwork: "SEPA" };
+        </pre>
       </section>
     </section>
     <section id="payer-initiated">
@@ -241,14 +242,18 @@
           </pre>
           <section>
             <h2>
-              <dfn>payerBank</dfn> member
+              <dfn>payerAccount</dfn> member
             </h2>
             <p>
-              This member is a code that enables the PISP to identify the
-              payer's bank. The first 15 characters of the IBAN (bank account)
-	      are required.
+              This member is an IBAN that enables the PISP to identify the
+              payer's account.
             </p>
-            
+            <p class="note">
+              Under PSD2, services may determine the payer's bank via the IBAN.
+              Note that recent requirements around account portability mean
+              that, within a given country, the payer may change banks without
+              changing IBAN.
+            </p>
           </section>
           <section>
             <h2>
