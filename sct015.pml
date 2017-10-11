@@ -86,9 +86,9 @@ the choice of the account is done at this level
 end note
 
 Originator -[#orange]-> APSP :consent for the credit Transfer
-APSP -[#green]-> APSP : preparingthe credit transfer \n with bank controls
+APSP -[#green]-> APSP : preparing the credit transfer \n with bank controls
 note left APSP
-the credit transfer is initiated but not yet validated
+the credit transfer is prepared but not yet validated
 end note
 APSP -[#blue]-> PISP: CustomerPaymentStatusReport (with OK or NOK)
 APSP -[#blue]-> Originator : The bank redirects Alice to the PISP through the callback URLs provided by the PISP
@@ -100,9 +100,9 @@ Beneficiary -[#blue]> PISP : acknowledge the information of payment
 PISP -[#blue]> APSP : confirm the credit transfer
 note right PISP
 the confirmation should be send "quickly" (less than one  minute)
-the amount is note yet reserved in the bank account
+the amount is not yet reserved in the bank account
 end note
-APSP -[#green]-> APSP : initiate the credit transfer into internal system
+APSP -[#green]-> APSP : initiate the credit \n transfer into internal system
 
 PISP -[#blue]-> Originator : Browser of Alice is redirect to Merchant
 
