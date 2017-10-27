@@ -165,7 +165,7 @@
         </pre>
       </section>
     </section>
-    <section id="payer-initiated">
+    <section id="payee-initiated">
       <h2>
         PISP Credit Transfers
       </h2>
@@ -237,6 +237,7 @@
           <pre class="idl"> 
             dictionary PISPCreditResponse {
             required      DOMString payerAccount;
+            required      Domstring payerName;
             DOMString selectedNetwork;
             };
           </pre>
@@ -255,7 +256,19 @@
               changing IBAN.
             </p>
           </section>
-          <section>
+          <<section>
+            <h2>
+              <dfn>payerName</dfn> member
+            </h2>
+            <p>
+              This member is a string that represent the Name (FisteName & LastName) of
+              the holder of the account. I may not be the name of the buyer.
+            </p>
+            <p class="note">
+             In some API from banks (ASPSP) he payerName is used for identification of the
+              payer and give a better user experience of the authentication.
+            </p>
+          </section>section>
             <h2>
               <dfn>selectedNetwork</dfn> member
             </h2>
@@ -277,7 +290,7 @@
         <a href=
         "https://github.com/w3c/payment-method-pisp-credit/wiki/Flows-%22Initiation-first%22">
         <img alt="Push credit transfer flow, SEPA example" width="100%" src=
-        "http://www.plantuml.com/plantuml/proxy?fmt=svg&amp;src=https://raw.githubusercontent.com/w3c/payment-method-pisp-credit/gh-pages/sct014.pml"></a>
+        "http://www.plantuml.com/plantuml/proxy?fmt=svg&amp;src=https://raw.githubusercontent.com/w3c/payment-method-pisp-credit/gh-pages/sct016.pml"></a>
       </p>
     </section>
     <section id="acks">
